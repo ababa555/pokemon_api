@@ -30,4 +30,6 @@ urlpatterns = [
 
   path('health/', views.HealthAPIView.as_view()),
   path('reload/', views.ReloadCacheAPIView.as_view()),
+  path('seasons/', views.SeasonAPIView.as_view()),
+  path('maintenance/', views.MaintenanceAPIView.as_view()),
 ]
