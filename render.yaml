@@ -9,7 +9,7 @@ services:
     name: mysite
     plan: free
     env: python
-    buildCommand: ".src/pokemon_api/build.sh"
+    buildCommand: "./src/pokemon_api/build.sh"
     startCommand: "gunicorn src.pokemon_api.pokemon_api.wsgi:application"
     envVars:
       - key: DATABASE_URL
