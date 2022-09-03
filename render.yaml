@@ -9,8 +9,8 @@ services:
     name: api
     plan: free
     env: python
-    buildCommand: "./build.sh"
-    startCommand: "gunicorn pokemon_api.wsgi:application"
+    buildCommand: ".src/pokemon_api/build.sh"
+    startCommand: "gunicorn src.pokemon_api.pokemon_api.wsgi:application"
     envVars:
       - key: SECRET_KEY
         generateValue: true
