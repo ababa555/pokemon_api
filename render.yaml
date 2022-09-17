@@ -10,7 +10,7 @@ services:
     plan: free
     env: python
     buildCommand: "./src/pokemon_api/build.sh"
-    startCommand: "gunicorn pokemon_api.wsgi:application"
+    startCommand: "gunicorn src.pokemon_api.pokemon_api.wsgi:application"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
