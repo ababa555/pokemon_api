@@ -9,7 +9,8 @@ services:
     name: mysite
     plan: free
     env: python
-    buildCommand: "./src/pokemon_api/build.sh"
+    rootDir: src/pokemon_api
+    buildCommand: "./build.sh"
     startCommand: "gunicorn pokemon_api.wsgi:application"
     envVars:
       - key: DATABASE_URL
@@ -24,3 +25,5 @@ services:
         generateValue: true
       - key: PYTHON_VERSION
         value: 3.9.1
+      - key:DJANGO_SETTINGS_MODULE
+        value: pokemon_api.settings.production
