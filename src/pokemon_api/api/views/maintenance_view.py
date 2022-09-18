@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 
 # http://127.0.0.1:8000/api/maintenance?generation=2
+# http://127.0.0.1:8000/api/maintenance?season=34
 class MaintenanceAPIView(views.APIView):  
   def get(self, request, format=None):
     BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -24,6 +25,11 @@ class MaintenanceAPIView(views.APIView):
     generation = request.query_params.get('generation')
     if generation:
       targetSeasonIndexes = targetSeasonIndexes[:int(generation)]
+
+    season = request.query_params.get('season')
+    if season:
+      index = targetSeasonIndexes.index(int(season))
+      targetSeasonIndexes = [targetSeasonIndexes[index]]
 
     os.makedirs(FILE_DIR, exist_ok=True)
 

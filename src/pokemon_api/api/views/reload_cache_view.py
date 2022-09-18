@@ -8,6 +8,7 @@ from ..repositories import PokemonNameInMemoryRepository, PokemonHomeInMemoryRep
 
 # http://127.0.0.1:8000/api/reload
 # http://127.0.0.1:8000/api/reload?generation=2
+# http://127.0.0.1:8000/api/reload?season=34
 class ReloadCacheAPIView(views.APIView):  
   def get(self, request, format=None):
     pokemonNameService = PokemonNameService(PokemonNameInMemoryRepository())
@@ -20,6 +21,10 @@ class ReloadCacheAPIView(views.APIView):
     generation = request.query_params.get('generation')
     if generation:
       seasons = seasons[:int(generation)]
+
+    season = request.query_params.get('season')
+    if season:
+      seasons = [s for s in seasons if s[2:4] == season]
 
     for season_id in seasons:
       pokemonHomeService = PokemonHomeService(PokemonHomeInMemoryRepository())
