@@ -1,21 +1,21 @@
 databases:
-  - name: mysite_db
+  - name: pokemon_api_db
     plan: free
-    databaseName: mysite_db
-    user: mysite_db
+    databaseName: pokemon_api_db
+    user: pokemon_api_db
 
 services:
   - type: web
-    name: mysite
+    name: pokemon_api
     plan: free
     env: python
     rootDir: src/pokemon_api
     buildCommand: "./build.sh"
-    startCommand: "gunicorn pokemon_api.wsgi:application"
+    startCommand: "gunicorn pokemon_api.wsgi:application --timeout 0"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysite_db
+          name: pokemon_api_db
           property: connectionString
       - key: SECRET_KEY
         generateValue: true
